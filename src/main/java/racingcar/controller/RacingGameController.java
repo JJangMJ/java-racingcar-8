@@ -13,9 +13,11 @@ public class RacingGameController {
 
     public void run() {
         List<String> carNames = inputView.inputCarNames();
-
         List<RacingCar> racingCars = carNames.stream()
                 .map(RacingCar::new)
                 .toList();
+        int roundCount = inputView.inputRoundCount();
+
+
     }
 }
