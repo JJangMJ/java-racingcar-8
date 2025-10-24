@@ -7,8 +7,8 @@ import racingcar.view.InputView;
 public class RacingGameController {
     private final InputView inputView;
 
-    public RacingGameController() {
-        this.inputView = new InputView();
+    public RacingGameController(InputView inputView) {
+        this.inputView = inputView;
     }
 
     public void run() {
@@ -17,7 +17,5 @@ public class RacingGameController {
                 .map(RacingCar::new)
                 .toList();
         int roundCount = inputView.inputRoundCount();
-
-
     }
 }
