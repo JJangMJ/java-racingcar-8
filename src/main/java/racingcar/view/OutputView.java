@@ -10,7 +10,7 @@ public class OutputView {
         System.out.println("실행 결과");
     }
 
-    public void printResult(List<RoundResult> roundResults) {
+    public void printRoundResults(List<RoundResult> roundResults) {
         roundResults.forEach(result -> {
             System.out.println(result.racingCarName() + " : " + "-".repeat(result.racingCarPosition()));
         });

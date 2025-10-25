@@ -39,7 +39,7 @@ public class RacingGameController {
         RacingGame racingGame = new RacingGame(racingCars);
         for (int i = 0; i < roundCount; i++) {
             List<RoundResult> roundResults = racingGame.playOneRound();
-            outputView.printResult(roundResults);
+            outputView.printRoundResults(roundResults);
         }
 
         List<RacingCar> winners = racingGame.extractWinners();
