@@ -24,4 +24,12 @@ public class RacingCar {
             throw new IllegalArgumentException("자동차 이름은 1~5자 이내여야 합니다.");
         }
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
 }
