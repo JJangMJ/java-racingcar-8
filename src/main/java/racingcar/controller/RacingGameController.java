@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import java.util.List;
 import racingcar.domain.RacingCar;
+import racingcar.domain.RacingGame;
 import racingcar.view.InputView;
 
 public class RacingGameController {
@@ -17,5 +18,8 @@ public class RacingGameController {
                 .map(RacingCar::new)
                 .toList();
         int roundCount = inputView.inputRoundCount();
+
+        RacingGame racingGame = new RacingGame(racingCars, roundCount);
+        racingGame.start();
     }
 }
