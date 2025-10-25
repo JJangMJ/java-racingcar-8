@@ -15,13 +15,41 @@ public class InputView {
 
     public int inputRoundCount() {
         System.out.println("시도할 횟수는 몇 회인가요?");
-        return Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        return validateRoundCount(input);
     }
 
     private void validateDuplicateName(List<String> carNames) {
         Set<String> uniqueNames = Set.copyOf(carNames);
         if (uniqueNames.size() != carNames.size()) {
             throw new IllegalArgumentException(ErrorMessage.RACING_CAR_NAME_CANNOT_BE_DUPLICATED.getErrorMessage());
+        }
+    }
+
+    private int validateRoundCount(String input) {
+        validateBlankTryCount(input);
+        int roundCount = validateAndParseToInt(input);
+        validatePositive(roundCount);
+        return roundCount;
+    }
+
+    private void validateBlankTryCount(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException(ErrorMessage.ROUND_COUNT_CANNOT_BE_BLANK.getErrorMessage());
+        }
+    }
+
+    private int validateAndParseToInt(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.ROUND_COUNT_SHOULD_BE_NUMBER.getErrorMessage());
+        }
+    }
+
+    private void validatePositive(int roundCount) {
+        if (roundCount <= 0) {
+            throw new IllegalArgumentException(ErrorMessage.ROUND_COUNT_SHOULD_BE_POSITIVE.getErrorMessage());
         }
     }
 }
