@@ -17,12 +17,24 @@ public class RacingGameController {
     }
 
     public void run() {
+        List<RacingCar> racingCars = enrollRacingCars();
+        int roundCount = setRoundCount();
+
+        playRacingGame(racingCars, roundCount);
+    }
+
+    private List<RacingCar> enrollRacingCars() {
         List<String> carNames = inputView.inputCarNames();
-        List<RacingCar> racingCars = carNames.stream()
+        return carNames.stream()
                 .map(RacingCar::new)
                 .toList();
-        int roundCount = inputView.inputRoundCount();
+    }
 
+    private int setRoundCount() {
+        return inputView.inputRoundCount();
+    }
+
+    private void playRacingGame(List<RacingCar> racingCars, int roundCount) {
         outputView.printResultHeader();
         RacingGame racingGame = new RacingGame(racingCars);
         for (int i = 0; i < roundCount; i++) {
