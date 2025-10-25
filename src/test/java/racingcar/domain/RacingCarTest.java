@@ -12,10 +12,33 @@ public class RacingCarTest {
     }
 
     @Test
+    void 무작위로_추출된_값이_4_이상이면_전진한다() {
+        RacingCar racingCar = new RacingCar("pobi");
+        int beforePosition = racingCar.getPosition();
+
+        racingCar.move(4);
+        racingCar.move(7);
+
+        Assertions.assertThat(racingCar.getPosition()).isEqualTo(beforePosition + 2);
+    }
+
+    @Test
+    void 랜덤값이_4_미만이면_전진하지_않는다() {
+        RacingCar racingCar = new RacingCar("pobi");
+        int beforePosition = racingCar.getPosition();
+
+        racingCar.move(0);
+        racingCar.move(1);
+        racingCar.move(3);
+
+        Assertions.assertThat(racingCar.getPosition()).isEqualTo(beforePosition);
+    }
+
+    @Test
     void move를_한번_호출하면_위치가_1_증가한다() {
         RacingCar car = new RacingCar("pobi");
 
-        car.move();
+        car.move(4);
 
         Assertions.assertThat(car.getPosition()).isEqualTo(1);
     }
@@ -24,9 +47,9 @@ public class RacingCarTest {
     void move를_여러_번_호출하면_호출_횟수만큼_위치가_증가한다() {
         RacingCar car = new RacingCar("pobi");
 
-        car.move();
-        car.move();
-        car.move();
+        car.move(4);
+        car.move(9);
+        car.move(4);
 
         Assertions.assertThat(car.getPosition()).isEqualTo(3);
     }
