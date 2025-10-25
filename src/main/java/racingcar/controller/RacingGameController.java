@@ -41,5 +41,8 @@ public class RacingGameController {
             List<RoundResult> roundResults = racingGame.playOneRound();
             outputView.printResult(roundResults);
         }
+
+        List<RacingCar> winners = racingGame.extractWinners();
+        outputView.printWinners(winners);
     }
 }

@@ -14,4 +14,15 @@ public class RacingGame {
         RacingRound racingRound = new RacingRound(racingCars);
         return racingRound.start();
     }
+
+    public List<RacingCar> extractWinners() {
+        int maxPosition = racingCars.stream()
+                .mapToInt(RacingCar::getPosition)
+                .max()
+                .orElse(0);
+
+        return racingCars.stream()
+                .filter(racingCar -> racingCar.getPosition() == maxPosition)
+                .toList();
+    }
 }

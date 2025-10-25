@@ -1,6 +1,7 @@
 package racingcar.view;
 
 import java.util.List;
+import racingcar.domain.RacingCar;
 import racingcar.dto.RoundResult;
 
 public class OutputView {
@@ -14,5 +15,10 @@ public class OutputView {
             System.out.println(result.racingCarName() + " : " + "-".repeat(result.racingCarPosition()));
         });
         System.out.println();
+    }
+
+    public void printWinners(List<RacingCar> winners) {
+        String winnerNames = String.join(", ", winners.stream().map(RacingCar::getName).toList());
+        System.out.println("최종 우승자 : " + winnerNames);
     }
 }
