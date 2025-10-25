@@ -4,6 +4,7 @@ import java.util.List;
 import racingcar.dto.RoundResult;
 
 public class RacingGame {
+    private static final int START_POSITION = 0;
     private final List<RacingCar> racingCars;
 
     public RacingGame(List<RacingCar> racingCars) {
@@ -19,7 +20,7 @@ public class RacingGame {
         int maxPosition = racingCars.stream()
                 .mapToInt(RacingCar::getPosition)
                 .max()
-                .orElse(0);
+                .orElse(START_POSITION);
 
         return racingCars.stream()
                 .filter(racingCar -> racingCar.getPosition() == maxPosition)
