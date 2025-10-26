@@ -44,8 +44,8 @@ public class RacingGameController {
         return racingGame;
     }
 
-    private void findWinners(RacingGame racingGame) {
-        List<RacingCar> winners = racingGame.extractWinners();
+    private void findWinners(RacingGame racingGameResult) {
+        List<RacingCar> winners = racingGameResult.extractWinners();
         outputView.printWinners(winners);
     }
 }
