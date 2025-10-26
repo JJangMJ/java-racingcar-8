@@ -19,8 +19,10 @@ public class RacingGameController {
     public void run() {
         List<RacingCar> racingCars = enrollRacingCars();
         int roundCount = setRoundCount();
-        RacingGame racingGameResult = playRacingGame(racingCars, roundCount);
-        findWinners(racingGameResult);
+
+        RacingGame racingGame = new RacingGame(racingCars);
+        playRounds(racingGame, roundCount);
+        findWinners(racingGame);
     }
 
     private List<RacingCar> enrollRacingCars() {
@@ -34,18 +36,16 @@ public class RacingGameController {
         return inputView.inputRoundCount();
     }
 
-    private RacingGame playRacingGame(List<RacingCar> racingCars, int roundCount) {
+    private void playRounds(RacingGame racingGame, int roundCount) {
         outputView.printResultHeader();
-        RacingGame racingGame = new RacingGame(racingCars);
         for (int i = 0; i < roundCount; i++) {
             List<RoundResult> roundResults = racingGame.playOneRound();
             outputView.printRoundResults(roundResults);
         }
-        return racingGame;
     }
 
-    private void findWinners(RacingGame racingGameResult) {
-        List<RacingCar> winners = racingGameResult.extractWinners();
+    private void findWinners(RacingGame racingGame) {
+        List<RacingCar> winners = racingGame.extractWinners();
         outputView.printWinners(winners);
     }
 }
