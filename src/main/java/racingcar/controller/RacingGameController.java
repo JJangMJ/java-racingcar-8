@@ -21,7 +21,7 @@ public class RacingGameController {
         int roundCount = setRoundCount();
 
         RacingGame racingGame = new RacingGame(racingCars);
-        playRounds(racingGame, roundCount);
+        playRacingGame(racingGame, roundCount);
         findWinners(racingGame);
     }
 
@@ -36,7 +36,7 @@ public class RacingGameController {
         return inputView.inputRoundCount();
     }
 
-    private void playRounds(RacingGame racingGame, int roundCount) {
+    private void playRacingGame(RacingGame racingGame, int roundCount) {
         outputView.printResultHeader();
         for (int i = 0; i < roundCount; i++) {
             List<RoundResult> roundResults = racingGame.playOneRound();
