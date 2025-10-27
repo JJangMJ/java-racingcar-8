@@ -2,5 +2,5 @@ package racingcar.dto;
 
 import java.util.List;
 
-public record RoundResult(List<CarResult> carResults) {
+public record RoundResult(List<CarStatus> carStatuses) {
 }

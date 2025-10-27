@@ -21,7 +21,7 @@ public class OutputView {
     }
 
     private void printRoundResult(RoundResult roundResult) {
-        roundResult.carResults().forEach(result -> {
+        roundResult.carStatuses().forEach(result -> {
             System.out.println(result.racingCarName() + " : " + "-".repeat(result.racingCarPosition()));
         });
         System.out.println();

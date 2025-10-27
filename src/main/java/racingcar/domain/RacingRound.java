@@ -1,7 +1,7 @@
 package racingcar.domain;
 
 import java.util.List;
-import racingcar.dto.CarResult;
+import racingcar.dto.CarStatus;
 import racingcar.dto.RoundResult;
 
 public class RacingRound {
@@ -12,7 +12,7 @@ public class RacingRound {
     }
 
     public RoundResult start() {
-        List<CarResult> carResults = racingCars.move();
-        return new RoundResult(carResults);
+        List<CarStatus> carStatuses = racingCars.move();
+        return new RoundResult(carStatuses);
     }
 }

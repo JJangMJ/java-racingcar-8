@@ -3,7 +3,7 @@ package racingcar.domain;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import racingcar.dto.CarResult;
+import racingcar.dto.CarStatus;
 import racingcar.dto.RoundResult;
 
 public class RacingRoundTest {
@@ -14,14 +14,14 @@ public class RacingRoundTest {
 
         RoundResult roundResult = racingRound.start();
 
-        Assertions.assertThat(roundResult.carResults()).hasSize(2);
+        Assertions.assertThat(roundResult.carStatuses()).hasSize(2);
 
-        Assertions.assertThat(roundResult.carResults())
-                .extracting(CarResult::racingCarName)
+        Assertions.assertThat(roundResult.carStatuses())
+                .extracting(CarStatus::racingCarName)
                 .containsExactlyInAnyOrder("pobi", "woni");
 
-        Assertions.assertThat(roundResult.carResults())
-                .extracting(CarResult::racingCarPosition)
+        Assertions.assertThat(roundResult.carStatuses())
+                .extracting(CarStatus::racingCarPosition)
                 .allMatch(pos -> pos == 0 || pos == 1);
     }
 

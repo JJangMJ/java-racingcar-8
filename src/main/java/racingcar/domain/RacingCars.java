@@ -3,7 +3,7 @@ package racingcar.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.Set;
-import racingcar.dto.CarResult;
+import racingcar.dto.CarStatus;
 import racingcar.exception.ErrorMessage;
 
 public class RacingCars {
@@ -19,12 +19,12 @@ public class RacingCars {
                 .toList();
     }
 
-    public List<CarResult> move() {
+    public List<CarStatus> move() {
         return racingCars.stream()
                 .map(racingCar -> {
                     int randomValue = Randoms.pickNumberInRange(RANDOM_NUMBER_MIN, RANDOM_NUMBER_MAX);
                     racingCar.move(randomValue);
-                    return new CarResult(racingCar.getName(), racingCar.getPosition());
+                    return new CarStatus(racingCar.getName(), racingCar.getPosition());
                 })
                 .toList();
     }
