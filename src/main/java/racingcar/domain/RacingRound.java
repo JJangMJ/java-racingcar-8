@@ -1,25 +1,18 @@
 package racingcar.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import racingcar.dto.CarResult;
 import racingcar.dto.RoundResult;
 
 public class RacingRound {
-    private static final int RANDOM_NUMBER_MIN = 0;
-    private static final int RANDOM_NUMBER_MAX = 9;
-    private final List<RacingCar> racingCars;
+    private final RacingCars racingCars;
 
-    public RacingRound(List<RacingCar> racingCars) {
+    public RacingRound(RacingCars racingCars) {
         this.racingCars = racingCars;
     }
 
-    public List<RoundResult> start() {
-        return racingCars.stream()
-                .map(racingCar -> {
-                    int randomValue = Randoms.pickNumberInRange(RANDOM_NUMBER_MIN, RANDOM_NUMBER_MAX);
-                    racingCar.move(randomValue);
-                    return new RoundResult(racingCar.getName(), racingCar.getPosition());
-                })
-                .toList();
+    public RoundResult start() {
+        List<CarResult> carResults = racingCars.move();
+        return new RoundResult(carResults);
     }
 }

@@ -1,4 +1,6 @@
 package racingcar.dto;
 
-public record RoundResult(String racingCarName, int racingCarPosition) {
+import java.util.List;
+
+public record RoundResult(List<CarResult> carResults) {
 }

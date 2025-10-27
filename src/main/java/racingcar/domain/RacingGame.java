@@ -1,29 +1,32 @@
 package racingcar.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import racingcar.dto.RoundResult;
 
 public class RacingGame {
-    private static final int START_POSITION = 0;
-    private final List<RacingCar> racingCars;
+    private final RacingCars racingCars;
+    private final int roundCount;
 
-    public RacingGame(List<RacingCar> racingCars) {
+    public RacingGame(RacingCars racingCars, int roundCount) {
         this.racingCars = racingCars;
+        this.roundCount = roundCount;
     }
 
-    public List<RoundResult> playOneRound() {
-        RacingRound racingRound = new RacingRound(racingCars);
-        return racingRound.start();
+    public List<RoundResult> playRounds() {
+        List<RoundResult> roundResults = new ArrayList<>();
+        for (int i = 0; i < roundCount; i++) {
+            roundResults.add(playOneRound());
+        }
+        return roundResults;
     }
 
     public List<RacingCar> extractWinners() {
-        int maxPosition = racingCars.stream()
-                .mapToInt(RacingCar::getPosition)
-                .max()
-                .orElse(START_POSITION);
+        return racingCars.extractWinners();
+    }
 
-        return racingCars.stream()
-                .filter(racingCar -> racingCar.getPosition() == maxPosition)
-                .toList();
+    private RoundResult playOneRound() {
+        RacingRound racingRound = new RacingRound(racingCars);
+        return racingRound.start();
     }
 }

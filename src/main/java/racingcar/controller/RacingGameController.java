@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import java.util.List;
 import racingcar.domain.RacingCar;
+import racingcar.domain.RacingCars;
 import racingcar.domain.RacingGame;
 import racingcar.dto.RoundResult;
 import racingcar.view.InputView;
@@ -17,31 +18,26 @@ public class RacingGameController {
     }
 
     public void run() {
-        List<RacingCar> racingCars = enrollRacingCars();
+        RacingCars racingCars = enrollRacingCars();
         int roundCount = setRoundCount();
 
-        RacingGame racingGame = new RacingGame(racingCars);
-        playRacingGame(racingGame, roundCount);
+        RacingGame racingGame = new RacingGame(racingCars, roundCount);
+        playRacingGame(racingGame);
         findWinners(racingGame);
     }
 
-    private List<RacingCar> enrollRacingCars() {
+    private RacingCars enrollRacingCars() {
         List<String> carNames = inputView.inputCarNames();
-        return carNames.stream()
-                .map(RacingCar::new)
-                .toList();
+        return new RacingCars(carNames);
     }
 
     private int setRoundCount() {
         return inputView.inputRoundCount();
     }
 
-    private void playRacingGame(RacingGame racingGame, int roundCount) {
-        outputView.printResultHeader();
-        for (int i = 0; i < roundCount; i++) {
-            List<RoundResult> roundResults = racingGame.playOneRound();
-            outputView.printRoundResults(roundResults);
-        }
+    private void playRacingGame(RacingGame racingGame) {
+        List<RoundResult> roundResults = racingGame.playRounds();
+        outputView.printRoundResults(roundResults);
     }
 
     private void findWinners(RacingGame racingGame) {
