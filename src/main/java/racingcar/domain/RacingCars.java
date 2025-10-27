@@ -40,6 +40,10 @@ public class RacingCars {
                 .toList();
     }
 
+    public List<RacingCar> getRacingCars() {
+        return racingCars;
+    }
+
     private void validateDuplicateNames(List<String> carNames) {
         List<String> trimmedNames = carNames.stream()
                 .map(String::trim)
@@ -48,9 +52,5 @@ public class RacingCars {
         if (uniqueNames.size() != carNames.size()) {
             throw new IllegalArgumentException(ErrorMessage.RACING_CAR_NAME_CANNOT_BE_DUPLICATED.getErrorMessage());
         }
-    }
-
-    public List<RacingCar> getRacingCars() {
-        return racingCars;
     }
 }
