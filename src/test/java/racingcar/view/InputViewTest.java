@@ -29,14 +29,6 @@ public class InputViewTest {
     }
 
     @Test
-    void 자동차_이름이_중복인_경우_예외_처리() {
-        provideInput("pobi, woni, woni");
-
-        Assertions.assertThatThrownBy(() -> inputView.inputCarNames()).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("자동차 이름은 중복될 수 없습니다.");
-    }
-
-    @Test
     void 시도_횟수가_숫자가_아닌_경우_예외_처리() {
         provideInput("abc");
 

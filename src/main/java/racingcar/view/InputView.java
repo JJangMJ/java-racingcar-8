@@ -8,22 +8,13 @@ import racingcar.exception.ErrorMessage;
 public class InputView {
     public List<String> inputCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요. (이름은 쉼표(,) 기준으로 구분)");
-        List<String> carNames = List.of(Console.readLine().split(","));
-        validateDuplicateName(carNames);
-        return carNames;
+        return List.of(Console.readLine().split(","));
     }
 
     public int inputRoundCount() {
         System.out.println("시도할 횟수는 몇 회인가요?");
         String input = Console.readLine();
         return validateRoundCount(input);
-    }
-
-    private void validateDuplicateName(List<String> carNames) {
-        Set<String> uniqueNames = Set.copyOf(carNames);
-        if (uniqueNames.size() != carNames.size()) {
-            throw new IllegalArgumentException(ErrorMessage.RACING_CAR_NAME_CANNOT_BE_DUPLICATED.getErrorMessage());
-        }
     }
 
     private int validateRoundCount(String input) {
