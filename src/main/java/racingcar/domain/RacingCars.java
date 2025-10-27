@@ -49,4 +49,8 @@ public class RacingCars {
             throw new IllegalArgumentException(ErrorMessage.RACING_CAR_NAME_CANNOT_BE_DUPLICATED.getErrorMessage());
         }
     }
+
+    public List<RacingCar> getRacingCars() {
+        return racingCars;
+    }
 }
